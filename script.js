@@ -153,10 +153,31 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('搜索功能即将推出！');
     });
 
-    // 下载功能
+    // 购物车功能
     const cartBtn = document.querySelector('.cart-btn');
     cartBtn.addEventListener('click', () => {
-        alert('下载功能即将推出！');
+        alert('购物车功能即将推出！');
+    });
+
+    // 下载按钮功能
+    const downloadButtons = document.querySelectorAll('.buy-btn');
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // 创建下载链接
+            const downloadLink = document.createElement('a');
+            downloadLink.href = 'website.zip';
+            downloadLink.download = 'website.zip';
+            
+            // 触发下载
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            
+            // 显示下载提示
+            alert('开始下载 website.zip 文件！');
+        });
     });
 
     // 登录功能
