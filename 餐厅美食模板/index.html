@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Maison - 精致法式餐厅</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>La Maison</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">关于我们</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu" class="nav-link">菜单</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gallery" class="nav-link">美食展示</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">联系我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">精致法式美食体验</h1>
+            <p class="hero-subtitle">每一道菜品都是艺术品，每一次用餐都是难忘的回忆</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">查看菜单</a>
+                <a href="#contact" class="btn btn-secondary">在线预订</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="精致餐厅环境">
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>关于我们</h2>
+                <p>传承经典，创新美味</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>La Maison 的故事</h3>
+                    <p>La Maison 成立于2010年，由米其林星级厨师 Pierre Dubois 创立。我们致力于将传统法式烹饪与现代创新完美融合，为顾客提供最纯正的法式美食体验。</p>
+                    <p>我们的食材全部来自法国本土和欧洲精选供应商，确保每一道菜品都保持最高的品质标准。餐厅环境优雅温馨，是您商务宴请、家庭聚会和浪漫约会的理想选择。</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h4>13</h4>
+                            <p>年经验</p>
+                        </div>
+                        <div class="stat">
+                            <h4>50+</h4>
+                            <p>特色菜品</p>
+                        </div>
+                        <div class="stat">
+                            <h4>1000+</h4>
+                            <p>满意顾客</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="厨师团队">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 菜单 -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>精选菜单</h2>
+                <p>品味法式经典，感受美食艺术</p>
+            </div>
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-category="appetizers">开胃菜</button>
+                <button class="tab-btn" data-category="main">主菜</button>
+                <button class="tab-btn" data-category="desserts">甜点</button>
+                <button class="tab-btn" data-category="drinks">饮品</button>
+            </div>
+            <div class="menu-grid">
+                <!-- 开胃菜 -->
+                <div class="menu-item" data-category="appetizers">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="法式蜗牛">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>法式蜗牛</h3>
+                        <p>经典法式开胃菜，配以香草黄油和蒜蓉</p>
+                        <span class="price">¥88</span>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="appetizers">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="鹅肝酱">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>鹅肝酱配无花果</h3>
+                        <p>精选鹅肝，配以新鲜无花果和面包片</p>
+                        <span class="price">¥128</span>
+                    </div>
+                </div>
+                <!-- 主菜 -->
+                <div class="menu-item" data-category="main">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="牛排">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>法式牛排配红酒汁</h3>
+                        <p>精选和牛牛排，配以红酒汁和时蔬</p>
+                        <span class="price">¥288</span>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="main">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="海鲜">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>香煎三文鱼</h3>
+                        <p>新鲜三文鱼配以柠檬黄油汁和芦笋</p>
+                        <span class="price">¥198</span>
+                    </div>
+                </div>
+                <!-- 甜点 -->
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="马卡龙">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>法式马卡龙</h3>
+                        <p>经典法式甜点，多种口味可选</p>
+                        <span class="price">¥68</span>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="提拉米苏">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>提拉米苏</h3>
+                        <p>意式经典甜点，口感细腻</p>
+                        <span class="price">¥58</span>
+                    </div>
+                </div>
+                <!-- 饮品 -->
+                <div class="menu-item" data-category="drinks">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="红酒">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>精选红酒</h3>
+                        <p>来自法国波尔多地区的精选红酒</p>
+                        <span class="price">¥188</span>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="drinks">
+                    <div class="menu-item-image">
+                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="香槟">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>香槟</h3>
+                        <p>法国香槟，庆祝时刻的最佳选择</p>
+                        <span class="price">¥288</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食展示 -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>美食展示</h2>
+                <p>每一道菜品都是视觉与味觉的盛宴</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="精致菜品">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="厨师制作">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="法式蜗牛">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="牛排">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="甜点">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="红酒">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>联系我们</h2>
+                <p>期待您的光临</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>地址</h3>
+                            <p>北京市朝阳区三里屯路19号</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>电话</h3>
+                            <p>+86 10 1234 5678</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>邮箱</h3>
+                            <p>info@lamaison.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>营业时间</h3>
+                            <p>周一至周日 11:00-22:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>在线预订</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="邮箱地址" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="联系电话" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="time" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">选择人数</option>
+                                <option value="1">1人</option>
+                                <option value="2">2人</option>
+                                <option value="3">3人</option>
+                                <option value="4">4人</option>
+                                <option value="5">5人</option>
+                                <option value="6+">6人以上</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="特殊要求（可选）" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">提交预订</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>La Maison</h3>
+                    <p>精致法式美食，为您带来难忘的用餐体验。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#menu">菜单</a></li>
+                        <li><a href="#gallery">美食展示</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>营业时间</h4>
+                    <ul>
+                        <li>周一至周五: 11:00-22:00</li>
+                        <li>周六至周日: 10:00-23:00</li>
+                        <li>节假日: 10:00-23:00</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 北京市朝阳区三里屯路19号</li>
+                        <li><i class="fas fa-phone"></i> +86 10 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@lamaison.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 La Maison. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
