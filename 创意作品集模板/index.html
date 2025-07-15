@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创意作品集 - Creative Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Portfolio</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">关于我</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#portfolio" class="nav-link">作品集</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">联系我</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页区域 -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">创意设计师</h1>
+                <p class="hero-subtitle">将想法转化为视觉艺术</p>
+                <p class="hero-description">
+                    我是一名充满激情的创意设计师，专注于创造独特而有意义的视觉体验。
+                    通过创新的设计和精湛的技术，我帮助品牌讲述他们的故事。
+                </p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">查看作品</a>
+                    <a href="#contact" class="btn btn-secondary">联系我</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-placeholder">
+                    <i class="fas fa-palette"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我区域 -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>创意设计师 & 视觉艺术家</h3>
+                    <p>
+                        我拥有5年的设计经验，专注于品牌设计、UI/UX设计和创意插画。
+                        我相信好的设计不仅仅是美观，更重要的是能够传达信息并创造价值。
+                    </p>
+                    <p>
+                        我的工作涵盖了从概念开发到最终交付的完整设计流程，
+                        确保每个项目都能达到最高的质量标准。
+                    </p>
+                    <div class="skills">
+                        <h4>专业技能</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">品牌设计</span>
+                            <span class="skill-tag">UI/UX设计</span>
+                            <span class="skill-tag">插画</span>
+                            <span class="skill-tag">摄影</span>
+                            <span class="skill-tag">3D建模</span>
+                            <span class="skill-tag">动画</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集区域 -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">作品集</h2>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="branding">品牌设计</button>
+                <button class="filter-btn" data-filter="ui">UI/UX</button>
+                <button class="filter-btn" data-filter="illustration">插画</button>
+                <button class="filter-btn" data-filter="photography">摄影</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/6366f1/ffffff?text=Brand+Design" alt="品牌设计项目">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>品牌设计项目</h3>
+                                <p>现代企业品牌形象设计</p>
+                                <a href="#" class="portfolio-link">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="ui">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/10b981/ffffff?text=UI+Design" alt="UI设计项目">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>移动应用UI设计</h3>
+                                <p>用户体验优化设计</p>
+                                <a href="#" class="portfolio-link">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="illustration">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/f59e0b/ffffff?text=Illustration" alt="插画项目">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>创意插画系列</h3>
+                                <p>数字艺术插画作品</p>
+                                <a href="#" class="portfolio-link">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="photography">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/ef4444/ffffff?text=Photography" alt="摄影项目">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>商业摄影</h3>
+                                <p>产品摄影与后期处理</p>
+                                <a href="#" class="portfolio-link">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/8b5cf6/ffffff?text=Logo+Design" alt="Logo设计">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Logo设计</h3>
+                                <p>创意Logo设计方案</p>
+                                <a href="#" class="portfolio-link">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="ui">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/400x300/06b6d4/ffffff?text=Web+Design" alt="网页设计">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>响应式网页设计</h3>
+                                <p>现代化网站设计</p>
+                                <a href="#" class="portfolio-link">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我区域 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>让我们开始合作</h3>
+                    <p>
+                        如果您对我的作品感兴趣，或者想要讨论项目合作，
+                        请随时联系我。我很乐意听取您的想法并为您提供专业的建议。
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@portfolio.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>纽约, 美国</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="主题" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="您的消息" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 创意作品集. 保留所有权利.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">首页</a>
+                    <a href="#about">关于我</a>
+                    <a href="#portfolio">作品集</a>
+                    <a href="#contact">联系我</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

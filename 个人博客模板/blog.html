@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章列表 - 我的个人博客</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Blog</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog.html" class="nav-link active">文章</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">联系</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">所有文章</h1>
+            <p class="page-subtitle">探索我的想法和见解</p>
+        </div>
+    </header>
+
+    <!-- 文章列表 -->
+    <main class="blog-main">
+        <div class="container">
+            <!-- 分类筛选 -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">全部</button>
+                <button class="filter-btn" data-category="tech">技术</button>
+                <button class="filter-btn" data-category="design">设计</button>
+                <button class="filter-btn" data-category="life">生活</button>
+                <button class="filter-btn" data-category="business">商业</button>
+            </div>
+
+            <!-- 文章网格 -->
+            <div class="blog-grid">
+                <article class="blog-card" data-category="tech">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=300&fit=crop" alt="文章配图">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">技术</span>
+                            <span class="blog-date">2024年1月15日</span>
+                        </div>
+                        <h2 class="blog-title">现代Web开发的最佳实践</h2>
+                        <p class="blog-excerpt">探讨现代Web开发中的关键技术和最佳实践，包括性能优化、用户体验设计、代码质量等方面。本文将深入分析当前行业标准，为开发者提供实用的指导建议。</p>
+                        <div class="blog-footer">
+                            <a href="#" class="read-more">阅读全文</a>
+                            <div class="blog-stats">
+                                <span><i class="fas fa-eye"></i> 1.2k</span>
+                                <span><i class="fas fa-heart"></i> 45</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="design">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=300&fit=crop" alt="文章配图">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">设计</span>
+                            <span class="blog-date">2024年1月10日</span>
+                        </div>
+                        <h2 class="blog-title">UI/UX设计趋势分析</h2>
+                        <p class="blog-excerpt">分析2024年UI/UX设计的主要趋势，包括新拟态设计、微交互、暗色模式等。了解如何将这些趋势应用到实际项目中，提升用户体验。</p>
+                        <div class="blog-footer">
+                            <a href="#" class="read-more">阅读全文</a>
+                            <div class="blog-stats">
+                                <span><i class="fas fa-eye"></i> 856</span>
+                                <span><i class="fas fa-heart"></i> 32</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="life">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=300&fit=crop" alt="文章配图">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">生活</span>
+                            <span class="blog-date">2024年1月5日</span>
+                        </div>
+                        <h2 class="blog-title">数字时代的阅读习惯</h2>
+                        <p class="blog-excerpt">在信息爆炸的时代，如何培养良好的阅读习惯，提高信息获取效率。分享个人在数字阅读方面的经验和技巧。</p>
+                        <div class="blog-footer">
+                            <a href="#" class="read-more">阅读全文</a>
+                            <div class="blog-stats">
+                                <span><i class="fas fa-eye"></i> 623</span>
+                                <span><i class="fas fa-heart"></i> 28</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="business">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop" alt="文章配图">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">商业</span>
+                            <span class="blog-date">2024年1月1日</span>
+                        </div>
+                        <h2 class="blog-title">创业公司的产品策略</h2>
+                        <p class="blog-excerpt">探讨创业公司如何制定有效的产品策略，从市场调研到产品定位，从用户需求到商业模式的全方位分析。</p>
+                        <div class="blog-footer">
+                            <a href="#" class="read-more">阅读全文</a>
+                            <div class="blog-stats">
+                                <span><i class="fas fa-eye"></i> 445</span>
+                                <span><i class="fas fa-heart"></i> 19</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="tech">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=300&fit=crop" alt="文章配图">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">技术</span>
+                            <span class="blog-date">2023年12月25日</span>
+                        </div>
+                        <h2 class="blog-title">JavaScript框架对比分析</h2>
+                        <p class="blog-excerpt">深入对比React、Vue、Angular等主流JavaScript框架的优缺点，帮助开发者选择最适合的技术栈。</p>
+                        <div class="blog-footer">
+                            <a href="#" class="read-more">阅读全文</a>
+                            <div class="blog-stats">
+                                <span><i class="fas fa-eye"></i> 1.5k</span>
+                                <span><i class="fas fa-heart"></i> 67</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="design">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=300&fit=crop" alt="文章配图">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">设计</span>
+                            <span class="blog-date">2023年12月20日</span>
+                        </div>
+                        <h2 class="blog-title">色彩心理学在UI设计中的应用</h2>
+                        <p class="blog-excerpt">探讨色彩心理学原理，以及如何在实际的UI设计中运用色彩来影响用户情绪和行为。</p>
+                        <div class="blog-footer">
+                            <a href="#" class="read-more">阅读全文</a>
+                            <div class="blog-stats">
+                                <span><i class="fas fa-eye"></i> 789</span>
+                                <span><i class="fas fa-heart"></i> 41</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- 分页 -->
+            <div class="pagination">
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link">4</a>
+                <a href="#" class="page-link">5</a>
+                <a href="#" class="page-link next">下一页 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>我的博客</h3>
+                    <p>分享技术、生活和创意的个人空间</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="blog.html">文章</a></li>
+                        <li><a href="about.html">关于</a></li>
+                        <li><a href="contact.html">联系</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>关注我</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 我的个人博客. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html> 

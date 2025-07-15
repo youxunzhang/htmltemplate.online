@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeMart - 高端电商平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>LuxeMart</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">首页</a>
+                <a href="#products" class="nav-link">产品</a>
+                <a href="#categories" class="nav-link">分类</a>
+                <a href="#about" class="nav-link">关于我们</a>
+                <a href="#contact" class="nav-link">联系我们</a>
+            </div>
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="搜索产品..." id="searchInput">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-actions">
+                    <button class="user-btn" id="loginBtn"><i class="fas fa-user"></i></button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>发现优质生活</h1>
+                <p>精选全球优质商品，为您提供卓越的购物体验</p>
+                <button class="cta-btn" onclick="scrollToProducts()">立即购物</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hero Image">
+            </div>
+        </section>
+
+        <!-- 产品分类 -->
+        <section class="categories" id="categories">
+            <div class="container">
+                <h2 class="section-title">热门分类</h2>
+                <div class="category-grid">
+                    <div class="category-card" data-category="electronics">
+                        <i class="fas fa-laptop"></i>
+                        <h3>电子产品</h3>
+                        <p>最新科技产品</p>
+                    </div>
+                    <div class="category-card" data-category="fashion">
+                        <i class="fas fa-tshirt"></i>
+                        <h3>时尚服饰</h3>
+                        <p>潮流时尚单品</p>
+                    </div>
+                    <div class="category-card" data-category="home">
+                        <i class="fas fa-home"></i>
+                        <h3>家居生活</h3>
+                        <p>品质生活用品</p>
+                    </div>
+                    <div class="category-card" data-category="beauty">
+                        <i class="fas fa-spa"></i>
+                        <h3>美妆护肤</h3>
+                        <p>美丽从内到外</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品展示 -->
+        <section class="products" id="products">
+            <div class="container">
+                <h2 class="section-title">精选产品</h2>
+                <div class="filter-bar">
+                    <select id="categoryFilter">
+                        <option value="">所有分类</option>
+                        <option value="electronics">电子产品</option>
+                        <option value="fashion">时尚服饰</option>
+                        <option value="home">家居生活</option>
+                        <option value="beauty">美妆护肤</option>
+                    </select>
+                    <select id="sortFilter">
+                        <option value="default">默认排序</option>
+                        <option value="price-low">价格从低到高</option>
+                        <option value="price-high">价格从高到低</option>
+                        <option value="rating">评分最高</option>
+                    </select>
+                </div>
+                <div class="product-grid" id="productGrid">
+                    <!-- 产品将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 特色服务 -->
+        <section class="features">
+            <div class="container">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>快速配送</h3>
+                        <p>24小时内发货，全国包邮</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>安全保障</h3>
+                        <p>正品保证，假一赔十</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-undo"></i>
+                        <h3>无忧退换</h3>
+                        <p>7天无理由退换货</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-headset"></i>
+                        <h3>24/7客服</h3>
+                        <p>专业客服团队在线服务</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 购物车侧边栏 -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>购物车</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- 购物车商品将通过JavaScript动态加载 -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>总计:</span>
+                <span id="cartTotal">¥0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">去结算</button>
+        </div>
+    </div>
+
+    <!-- 登录模态框 -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>用户登录</h3>
+                <button class="close-modal" id="closeLoginModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">登录</button>
+                </form>
+                <p class="form-footer">
+                    还没有账号？ <a href="#" id="showRegister">立即注册</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>用户注册</h3>
+                <button class="close-modal" id="closeRegisterModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="regName">姓名</label>
+                        <input type="text" id="regName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">邮箱</label>
+                        <input type="email" id="regEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">密码</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regConfirmPassword">确认密码</label>
+                        <input type="password" id="regConfirmPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn">注册</button>
+                </form>
+                <p class="form-footer">
+                    已有账号？ <a href="#" id="showLogin">立即登录</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 结算模态框 -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content checkout-modal">
+            <div class="modal-header">
+                <h3>订单结算</h3>
+                <button class="close-modal" id="closeCheckoutModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-title">收货信息</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-title">支付方式</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-title">确认订单</span>
+                    </div>
+                </div>
+                
+                <div class="step-content" id="step1">
+                    <form id="shippingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">姓名</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">电话</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">详细地址</label>
+                            <textarea id="address" required></textarea>
+                        </div>
+                        <button type="button" class="next-btn" onclick="nextStep(2)">下一步</button>
+                    </form>
+                </div>
+
+                <div class="step-content hidden" id="step2">
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <input type="radio" name="payment" id="alipay" value="alipay" checked>
+                            <label for="alipay">
+                                <i class="fab fa-alipay"></i>
+                                支付宝
+                            </label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" name="payment" id="wechat" value="wechat">
+                            <label for="wechat">
+                                <i class="fab fa-weixin"></i>
+                                微信支付
+                            </label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" name="payment" id="card" value="card">
+                            <label for="card">
+                                <i class="fas fa-credit-card"></i>
+                                银行卡
+                            </label>
+                        </div>
+                    </div>
+                    <div class="step-buttons">
+                        <button type="button" class="prev-btn" onclick="prevStep(1)">上一步</button>
+                        <button type="button" class="next-btn" onclick="nextStep(3)">下一步</button>
+                    </div>
+                </div>
+
+                <div class="step-content hidden" id="step3">
+                    <div class="order-summary">
+                        <h4>订单摘要</h4>
+                        <div class="order-items" id="orderItems">
+                            <!-- 订单商品将通过JavaScript动态加载 -->
+                        </div>
+                        <div class="order-total">
+                            <span>总计:</span>
+                            <span id="orderTotal">¥0.00</span>
+                        </div>
+                    </div>
+                    <div class="step-buttons">
+                        <button type="button" class="prev-btn" onclick="prevStep(2)">上一步</button>
+                        <button type="button" class="submit-btn" onclick="placeOrder()">提交订单</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于LuxeMart</h4>
+                    <p>致力于为用户提供优质的购物体验，精选全球优质商品。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#products">产品</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>客户服务</h4>
+                    <ul>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">退换货政策</a></li>
+                        <li><a href="#">配送信息</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关注我们</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LuxeMart. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
