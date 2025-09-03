@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站地图 - 完整网站结构导航 | TemplateHub</title>
+    <meta name="description" content="TemplateHub网站完整地图，包含所有页面、模板分类和功能模块的详细导航。">
+    <meta name="keywords" content="网站地图,网站导航,页面结构,模板分类,功能模块">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXH17REJKN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CXH17REJKN');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8794607118520437" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .sitemap-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .sitemap-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .sitemap-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .sitemap-header h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .sitemap-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .sitemap-category {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+        
+        .sitemap-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .sitemap-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sitemap-category li {
+            margin: 0.5rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sitemap-category li:last-child {
+            border-bottom: none;
+        }
+        
+        .sitemap-category a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .sitemap-category a:hover {
+            color: #667eea;
+            transform: translateX(5px);
+        }
+        
+        .sitemap-category .icon {
+            width: 20px;
+            color: #667eea;
+        }
+        
+        .sitemap-category .description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        .main-pages {
+            border-left-color: #4CAF50;
+        }
+        
+        .main-pages h3 {
+            color: #4CAF50;
+        }
+        
+        .template-pages {
+            border-left-color: #FF9800;
+        }
+        
+        .template-pages h3 {
+            color: #FF9800;
+        }
+        
+        .utility-pages {
+            border-left-color: #9C27B0;
+        }
+        
+        .utility-pages h3 {
+            color: #9C27B0;
+        }
+        
+        .game-pages {
+            border-left-color: #E91E63;
+        }
+        
+        .game-pages h3 {
+            color: #E91E63;
+        }
+        
+        .sitemap-search {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            margin-bottom: 1rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .search-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+        
+        .sitemap-stats {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .back-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-home:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sitemap-container">
+        <div class="sitemap-section">
+            <div class="sitemap-header">
+                <h1><i class="fas fa-sitemap"></i> 网站地图</h1>
+                <p>完整的网站结构导航，帮助您快速找到所需内容</p>
+            </div>
+            
+            <div class="sitemap-search">
+                <input type="text" class="search-input" id="searchInput" placeholder="搜索页面或功能...">
+                <button class="search-btn" onclick="searchPages()">
+                    <i class="fas fa-search"></i> 搜索
+                </button>
+            </div>
+            
+            <div class="sitemap-grid">
+                <!-- 主要页面 -->
+                <div class="sitemap-category main-pages">
+                    <h3><i class="fas fa-home"></i> 主要页面</h3>
+                    <ul>
+                        <li>
+                            <a href="index.html">
+                                <i class="fas fa-home icon"></i>
+                                首页
+                            </a>
+                            <div class="description">网站主页，展示主要功能和模板</div>
+                        </li>
+                        <li>
+                            <a href="about.html">
+                                <i class="fas fa-info-circle icon"></i>
+                                关于我们
+                            </a>
+                            <div class="description">了解TemplateHub团队和使命</div>
+                        </li>
+                        <li>
+                            <a href="contact.html">
+                                <i class="fas fa-envelope icon"></i>
+                                联系我们
+                            </a>
+                            <div class="description">获取客户支持和联系方式</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 模板页面 -->
+                <div class="sitemap-category template-pages">
+                    <h3><i class="fas fa-palette"></i> 网站模板</h3>
+                    <ul>
+                        <li>
+                            <a href="个人博客模板/index.html">
+                                <i class="fas fa-blog icon"></i>
+                                个人博客模板
+                            </a>
+                            <div class="description">适合个人写作和分享的博客模板</div>
+                        </li>
+                        <li>
+                            <a href="企业网站模板/index.html">
+                                <i class="fas fa-building icon"></i>
+                                企业网站模板
+                            </a>
+                            <div class="description">专业的企业官网和展示模板</div>
+                        </li>
+                        <li>
+                            <a href="电子商务模板/index.html">
+                                <i class="fas fa-shopping-cart icon"></i>
+                                电子商务模板
+                            </a>
+                            <div class="description">在线商店和产品销售模板</div>
+                        </li>
+                        <li>
+                            <a href="作品集模板/index.html">
+                                <i class="fas fa-images icon"></i>
+                                作品集模板
+                            </a>
+                            <div class="description">设计师和艺术家作品展示</div>
+                        </li>
+                        <li>
+                            <a href="教育培训模板/index.html">
+                                <i class="fas fa-graduation-cap icon"></i>
+                                教育培训模板
+                            </a>
+                            <div class="description">学校和培训机构专用模板</div>
+                        </li>
+                        <li>
+                            <a href="健身中心模板/index.html">
+                                <i class="fas fa-dumbbell icon"></i>
+                                健身中心模板
+                            </a>
+                            <div class="description">健身房和运动中心网站</div>
+                        </li>
+                        <li>
+                            <a href="餐厅美食模板/index.html">
+                                <i class="fas fa-utensils icon"></i>
+                                餐厅美食模板
+                            </a>
+                            <div class="description">餐厅和美食相关网站</div>
+                        </li>
+                        <li>
+                            <a href="科技公司模板/index.html">
+                                <i class="fas fa-laptop-code icon"></i>
+                                科技公司模板
+                            </a>
+                            <div class="description">科技公司和IT企业网站</div>
+                        </li>
+                        <li>
+                            <a href="现代商务模板/index.html">
+                                <i class="fas fa-briefcase icon"></i>
+                                现代商务模板
+                            </a>
+                            <div class="description">现代化商务网站解决方案</div>
+                        </li>
+                        <li>
+                            <a href="创意作品集模板/index.html">
+                                <i class="fas fa-paint-brush icon"></i>
+                                创意作品集模板
+                            </a>
+                            <div class="description">创意设计和艺术展示</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 实用工具页面 -->
+                <div class="sitemap-category utility-pages">
+                    <h3><i class="fas fa-tools"></i> 实用工具</h3>
+                    <ul>
+                        <li>
+                            <a href="timer.html">
+                                <i class="fas fa-clock icon"></i>
+                                计时器工具
+                            </a>
+                            <div class="description">正计时、倒计时和番茄钟功能</div>
+                        </li>
+                        <li>
+                            <a href="food-wheel.html">
+                                <i class="fas fa-utensils icon"></i>
+                                食物大转盘
+                            </a>
+                            <div class="description">随机美食推荐和营养分析</div>
+                        </li>
+                        <li>
+                            <a href="game.html">
+                                <i class="fas fa-gamepad icon"></i>
+                                模板拼图游戏
+                            </a>
+                            <div class="description">有趣的模板主题记忆游戏</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 游戏娱乐页面 -->
+                <div class="sitemap-category game-pages">
+                    <h3><i class="fas fa-play-circle"></i> 游戏娱乐</h3>
+                    <ul>
+                        <li>
+                            <a href="game.html">
+                                <i class="fas fa-puzzle-piece icon"></i>
+                                拼图游戏
+                            </a>
+                            <div class="description">测试记忆力的模板主题游戏</div>
+                        </li>
+                        <li>
+                            <a href="food-wheel.html">
+                                <i class="fas fa-random icon"></i>
+                                美食转盘
+                            </a>
+                            <div class="description">随机美食选择和营养信息</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sitemap-stats">
+                <h3><i class="fas fa-chart-bar"></i> 网站统计</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">页面总数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">模板类型</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">实用工具</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">游戏功能</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-home">
+            <i class="fas fa-home"></i> 返回首页
+        </a>
+    </div>
+
+    <script>
+        // 搜索功能
+        function searchPages() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const allLinks = document.querySelectorAll('.sitemap-category a');
+            let foundPages = [];
+            
+            allLinks.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                const description = link.nextElementSibling?.textContent.toLowerCase() || '';
+                
+                if (text.includes(searchTerm) || description.includes(searchTerm)) {
+                    foundPages.push({
+                        title: link.textContent.trim(),
+                        url: link.href,
+                        description: link.nextElementSibling?.textContent.trim() || ''
+                    });
+                }
+            });
+            
+            if (foundPages.length > 0) {
+                let resultMessage = `找到 ${foundPages.length} 个相关页面：\n\n`;
+                foundPages.forEach(page => {
+                    resultMessage += `• ${page.title}\n  ${page.description}\n\n`;
+                });
+                alert(resultMessage);
+            } else {
+                alert('未找到相关页面，请尝试其他关键词。');
+            }
+        }
+        
+        // 回车键搜索
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchPages();
+            }
+        });
+        
+        // 页面加载完成后的初始化
+        window.addEventListener('load', function() {
+            // 添加页面访问统计
+            const visitCount = localStorage.getItem('sitemapVisits') || 0;
+            localStorage.setItem('sitemapVisits', parseInt(visitCount) + 1);
+            
+            // 高亮当前页面
+            const currentPage = window.location.pathname.split('/').pop();
+            const allLinks = document.querySelectorAll('.sitemap-category a');
+            
+            allLinks.forEach(link => {
+                if (link.href.includes(currentPage)) {
+                    link.style.fontWeight = 'bold';
+                    link.style.color = '#667eea';
+                }
+            });
+        });
+    </script>
+    
+    <!-- 页面内容概要 -->
+    <div class="page-summary" style="background: #f8f9fa; padding: 2rem 0; margin-top: 2rem;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <h4>页面内容概要</h4>
+            <p>网站地图页面提供了TemplateHub网站的完整结构导航，包含四个主要分类：主要页面（首页、关于我们、联系我们）、网站模板（10种不同类型的专业模板）、实用工具（计时器、食物转盘、游戏）和游戏娱乐功能。页面采用清晰的分类展示和搜索功能，帮助用户快速找到所需内容。每个页面都包含详细描述，让用户了解其功能和用途。网站地图不仅提高了用户体验，还有助于搜索引擎优化和网站导航结构的完善。</p>
+        </div>
+    </div>
+</body>
+</html>

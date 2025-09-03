@@ -13,9 +13,9 @@
   gtag('config', 'G-CXH17REJKN');
 </script>
     <!-- SEO Meta Tags -->
-    <title>TemplateHub - 专业网站模板销售平台 | HTML模板 | 响应式网站模板 | 免费网站模板</title>
-    <meta name="description" content="TemplateHub提供专业的网站模板、HTML模板、响应式网站模板、Bootstrap模板、企业网站模板、个人简历模板、作品集网站模板等。现代化设计，快速建站，助力您的业务成功。">
-    <meta name="keywords" content="网站模板,HTML模板,网页模板,免费网站模板,响应式网站模板,Bootstrap模板,企业网站模板,个人简历模板,作品集网站模板,着陆页模板,电子商务模板,博客模板,单页网站模板,创意网站模板,CSS模板,HTML5模板,CSS3模板,响应式设计,网站主题,建站模板,网站设计,网页设计模板,模板下载,商业网站模板,轻量级网站模板">
+    <title>TemplateHub - 专业网站模板下载平台 | HTML模板 | 响应式网站模板 | 免费网站模板 | 模板定制</title>
+    <meta name="description" content="TemplateHub提供专业的网站模板下载、HTML模板、响应式网站模板、Bootstrap模板、企业网站模板、个人网站模板、博客模板、作品集模板、电子商务网站模板、Landing Page模板、Admin Dashboard模板等。支持模板定制，现代化设计，快速建站，助力您的业务成功。">
+    <meta name="keywords" content="网站模板,网站模板下载,HTML模板,免费网站模板,响应式网站模板,网站设计模板,CSS模板,企业网站模板,个人网站模板,博客模板,作品集模板,电子商务网站模板,Landing Page模板,Bootstrap模板,Admin Dashboard模板,现代网站模板,简约网站模板,创意网站模板,HTML5模板,CSS3模板,JavaScript模板,前端模板,网站后台模板,单页模板,多页模板,模板定制">
     <meta name="author" content="TemplateHub">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://htmltemplate.online/">
@@ -119,10 +119,16 @@
                 <li><a href="#categories">分类</a></li>
                 <li><a href="#about">关于</a></li>
                 <li><a href="#contact">联系</a></li>
+                <li><a href="sitemap-page.html">网站地图</a></li>
+                <li><a href="game.html">游戏</a></li>
+                <li><a href="timer.html">计时器</a></li>
+                <li><a href="food-wheel.html">美食转盘</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="search-btn"><i class="fas fa-search"></i></button>
                 <button class="cart-btn"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></button>
+                <button class="favorite-btn" id="favoriteBtn" title="收藏页面"><i class="fas fa-bookmark"></i></button>
+                <button class="share-btn" id="shareBtn" title="分享页面"><i class="fas fa-share-alt"></i></button>
                 <button class="login-btn">登录</button>
             </div>
             <div class="hamburger">
@@ -597,9 +603,70 @@
                 <p>&copy; 2024 TemplateHub. 保留所有权利。</p>
             </div>
         </div>
+        
+        <!-- 页面内容概要 -->
+        <div class="page-summary">
+            <div class="container">
+                <h4>页面内容概要</h4>
+                <p>TemplateHub是一个专业的网站模板销售平台，提供HTML模板、响应式网站模板、Bootstrap模板、企业网站模板、个人网站模板、博客模板、作品集模板、电子商务网站模板、Landing Page模板、Admin Dashboard模板等。我们致力于为您的业务提供完美的在线解决方案，支持模板定制，采用现代化设计，确保快速建站，助力您的业务成功。无论您是企业、个人还是开发者，都能在这里找到适合的网站模板。</p>
+            </div>
+        </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>
+    
+    <!-- 收藏和分享功能 -->
+    <script>
+        // 收藏功能
+        document.getElementById('favoriteBtn').addEventListener('click', function() {
+            if (window.sidebar && window.sidebar.addPanel) { // Mozilla Firefox
+                window.sidebar.addPanel(document.title, window.location.href, '');
+            } else if (window.external && ('AddFavorite' in window.external)) { // IE
+                window.external.AddFavorite(window.location.href, document.title);
+            } else { // 其他浏览器
+                alert('请按 ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + ' + D 添加到收藏夹。');
+            }
+            
+            // 添加视觉反馈
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
+        
+        // 分享功能
+        document.getElementById('shareBtn').addEventListener('click', function() {
+            if (navigator.share) {
+                // 使用Web Share API
+                navigator.share({
+                    title: document.title,
+                    text: '发现完美的网站模板 - TemplateHub',
+                    url: window.location.href
+                });
+            } else {
+                // 复制链接到剪贴板
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('链接已复制到剪贴板！');
+                }).catch(() => {
+                    // 备用方案
+                    const textArea = document.createElement('textarea');
+                    textArea.value = window.location.href;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('链接已复制到剪贴板！');
+                });
+            }
+            
+            // 添加视觉反馈
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
+    </script>
     
     <!-- Service Worker Registration -->
     <script>

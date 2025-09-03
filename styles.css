@@ -76,7 +76,7 @@ body {
     gap: 1rem;
 }
 
-.search-btn, .cart-btn {
+.search-btn, .cart-btn, .favorite-btn, .share-btn {
     background: none;
     border: none;
     font-size: 1.1rem;
@@ -88,9 +88,19 @@ body {
     position: relative;
 }
 
-.search-btn:hover, .cart-btn:hover {
+.search-btn:hover, .cart-btn:hover, .favorite-btn:hover, .share-btn:hover {
     background: rgba(102, 126, 234, 0.1);
     color: #667eea;
+}
+
+.favorite-btn:hover {
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.share-btn:hover {
+    color: #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
 }
 
 .cart-count {
@@ -1359,6 +1369,32 @@ body {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+/* 页面内容概要 */
+.page-summary {
+    background: #f8f9fa;
+    padding: 2rem 0;
+    border-top: 1px solid #e9ecef;
+}
+
+.page-summary .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.page-summary h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.page-summary p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* 页脚 */

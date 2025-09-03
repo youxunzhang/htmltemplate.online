@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计时器 - 时间管理与倒计时工具 | TemplateHub</title>
+    <meta name="description" content="专业的计时器工具，支持正计时、倒计时、时间管理，帮助您高效管理时间。">
+    <meta name="keywords" content="计时器,倒计时,时间管理,番茄钟,工作效率">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXH17REJKN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CXH17REJKN');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8794607118520437" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .timer-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .timer-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .timer-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .timer-tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .timer-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .timer-tab:hover {
+            color: #667eea;
+        }
+        
+        .timer-content {
+            display: none;
+        }
+        
+        .timer-content.active {
+            display: block;
+        }
+        
+        .timer-display {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .time-display {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #333;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+        }
+        
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .timer-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+        
+        .btn-start {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+        
+        .btn-pause {
+            background: linear-gradient(45deg, #FF9800, #F57C00);
+            color: white;
+        }
+        
+        .btn-reset {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            color: white;
+        }
+        
+        .btn-save {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            color: white;
+        }
+        
+        .timer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .timer-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .time-input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .time-input input {
+            width: 80px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        .time-input label {
+            margin-top: 5px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .pomodoro-settings {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        
+        .setting-item input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .timer-history {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .history-item {
+            background: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .history-time {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .history-duration {
+            color: #666;
+        }
+        
+        .history-delete {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .back-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-home:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .time-display {
+                font-size: 2.5rem;
+            }
+            
+            .timer-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .timer-btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <div class="timer-section">
+            <h1><i class="fas fa-clock"></i> 专业计时器</h1>
+            <p>高效管理时间，提升工作效率</p>
+            
+            <div class="timer-tabs">
+                <button class="timer-tab active" data-tab="stopwatch">正计时</button>
+                <button class="timer-tab" data-tab="countdown">倒计时</button>
+                <button class="timer-tab" data-tab="pomodoro">番茄钟</button>
+            </div>
+            
+            <!-- 正计时 -->
+            <div class="timer-content active" id="stopwatch">
+                <div class="timer-display">
+                    <div class="time-display" id="stopwatchDisplay">00:00:00</div>
+                    <p>记录您的时间</p>
+                </div>
+                
+                <div class="timer-controls">
+                    <button class="timer-btn btn-start" id="stopwatchStart">开始</button>
+                    <button class="timer-btn btn-pause" id="stopwatchPause" style="display: none;">暂停</button>
+                    <button class="timer-btn btn-reset" id="stopwatchReset">重置</button>
+                    <button class="timer-btn btn-save" id="stopwatchSave">保存记录</button>
+                </div>
+            </div>
+            
+            <!-- 倒计时 -->
+            <div class="timer-content" id="countdown">
+                <div class="timer-display">
+                    <div class="time-display" id="countdownDisplay">00:00:00</div>
+                    <p>设置倒计时</p>
+                </div>
+                
+                <div class="timer-inputs">
+                    <div class="time-input">
+                        <input type="number" id="countdownHours" min="0" max="99" value="0">
+                        <label>小时</label>
+                    </div>
+                    <div class="time-input">
+                        <input type="number" id="countdownMinutes" min="0" max="59" value="0">
+                        <label>分钟</label>
+                    </div>
+                    <div class="time-input">
+                        <input type="number" id="countdownSeconds" min="0" max="59" value="0">
+                        <label>秒</label>
+                    </div>
+                </div>
+                
+                <div class="timer-controls">
+                    <button class="timer-btn btn-start" id="countdownStart">开始倒计时</button>
+                    <button class="timer-btn btn-pause" id="countdownPause" style="display: none;">暂停</button>
+                    <button class="timer-btn btn-reset" id="countdownReset">重置</button>
+                </div>
+            </div>
+            
+            <!-- 番茄钟 -->
+            <div class="timer-content" id="pomodoro">
+                <div class="timer-display">
+                    <div class="time-display" id="pomodoroDisplay">25:00</div>
+                    <p id="pomodoroStatus">专注工作时间</p>
+                </div>
+                
+                <div class="pomodoro-settings">
+                    <div class="setting-item">
+                        <span>专注时间 (分钟):</span>
+                        <input type="number" id="workTime" value="25" min="1" max="120">
+                    </div>
+                    <div class="setting-item">
+                        <span>短休息时间 (分钟):</span>
+                        <input type="number" id="shortBreakTime" value="5" min="1" max="30">
+                    </div>
+                    <div class="setting-item">
+                        <span>长休息时间 (分钟):</span>
+                        <input type="number" id="longBreakTime" value="15" min="1" max="60">
+                    </div>
+                    <div class="setting-item">
+                        <span>长休息间隔:</span>
+                        <input type="number" id="longBreakInterval" value="4" min="1" max="10">
+                    </div>
+                </div>
+                
+                <div class="timer-controls">
+                    <button class="timer-btn btn-start" id="pomodoroStart">开始番茄钟</button>
+                    <button class="timer-btn btn-pause" id="pomodoroPause" style="display: none;">暂停</button>
+                    <button class="timer-btn btn-reset" id="pomodoroReset">重置</button>
+                </div>
+            </div>
+            
+            <!-- 时间记录历史 -->
+            <div class="timer-history">
+                <h3><i class="fas fa-history"></i> 时间记录历史</h3>
+                <div id="historyList">
+                    <!-- 历史记录将在这里显示 -->
+                </div>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-home">
+            <i class="fas fa-home"></i> 返回首页
+        </a>
+    </div>
+
+    <script>
+        // 全局变量
+        let stopwatchInterval;
+        let countdownInterval;
+        let pomodoroInterval;
+        let stopwatchRunning = false;
+        let countdownRunning = false;
+        let pomodoroRunning = false;
+        let stopwatchTime = 0;
+        let countdownTime = 0;
+        let pomodoroTime = 0;
+        let pomodoroPhase = 'work'; // work, shortBreak, longBreak
+        let pomodoroCount = 0;
+        
+        // 加载历史记录
+        let timerHistory = JSON.parse(localStorage.getItem('timerHistory') || '[]');
+        
+        // 标签切换
+        document.querySelectorAll('.timer-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.timer-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.timer-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+        
+        // 正计时功能
+        document.getElementById('stopwatchStart').addEventListener('click', startStopwatch);
+        document.getElementById('stopwatchPause').addEventListener('click', pauseStopwatch);
+        document.getElementById('stopwatchReset').addEventListener('click', resetStopwatch);
+        document.getElementById('stopwatchSave').addEventListener('click', saveStopwatch);
+        
+        function startStopwatch() {
+            if (!stopwatchRunning) {
+                stopwatchRunning = true;
+                document.getElementById('stopwatchStart').style.display = 'none';
+                document.getElementById('stopwatchPause').style.display = 'inline-block';
+                
+                stopwatchInterval = setInterval(() => {
+                    stopwatchTime++;
+                    updateStopwatchDisplay();
+                }, 1000);
+            }
+        }
+        
+        function pauseStopwatch() {
+            stopwatchRunning = false;
+            clearInterval(stopwatchInterval);
+            document.getElementById('stopwatchStart').style.display = 'inline-block';
+            document.getElementById('stopwatchPause').style.display = 'none';
+        }
+        
+        function resetStopwatch() {
+            stopwatchRunning = false;
+            clearInterval(stopwatchInterval);
+            stopwatchTime = 0;
+            updateStopwatchDisplay();
+            document.getElementById('stopwatchStart').style.display = 'inline-block';
+            document.getElementById('stopwatchPause').style.display = 'none';
+        }
+        
+        function updateStopwatchDisplay() {
+            const hours = Math.floor(stopwatchTime / 3600);
+            const minutes = Math.floor((stopwatchTime % 3600) / 60);
+            const seconds = stopwatchTime % 60;
+            
+            document.getElementById('stopwatchDisplay').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        function saveStopwatch() {
+            if (stopwatchTime > 0) {
+                const record = {
+                    type: '正计时',
+                    duration: stopwatchTime,
+                    time: new Date().toLocaleString(),
+                    display: document.getElementById('stopwatchDisplay').textContent
+                };
+                
+                timerHistory.unshift(record);
+                if (timerHistory.length > 20) timerHistory.pop();
+                localStorage.setItem('timerHistory', JSON.stringify(timerHistory));
+                updateHistoryDisplay();
+                
+                alert('记录已保存！');
+            }
+        }
+        
+        // 倒计时功能
+        document.getElementById('countdownStart').addEventListener('click', startCountdown);
+        document.getElementById('countdownPause').addEventListener('click', pauseCountdown);
+        document.getElementById('countdownReset').addEventListener('click', resetCountdown);
+        
+        function startCountdown() {
+            if (!countdownRunning) {
+                const hours = parseInt(document.getElementById('countdownHours').value) || 0;
+                const minutes = parseInt(document.getElementById('countdownMinutes').value) || 0;
+                const seconds = parseInt(document.getElementById('countdownSeconds').value) || 0;
+                
+                countdownTime = hours * 3600 + minutes * 60 + seconds;
+                
+                if (countdownTime > 0) {
+                    countdownRunning = true;
+                    document.getElementById('countdownStart').style.display = 'none';
+                    document.getElementById('countdownPause').style.display = 'inline-block';
+                    
+                    countdownInterval = setInterval(() => {
+                        countdownTime--;
+                        updateCountdownDisplay();
+                        
+                        if (countdownTime <= 0) {
+                            clearInterval(countdownInterval);
+                            countdownRunning = false;
+                            document.getElementById('countdownStart').style.display = 'inline-block';
+                            document.getElementById('countdownPause').style.display = 'none';
+                            alert('倒计时结束！');
+                        }
+                    }, 1000);
+                }
+            }
+        }
+        
+        function pauseCountdown() {
+            countdownRunning = false;
+            clearInterval(countdownInterval);
+            document.getElementById('countdownStart').style.display = 'inline-block';
+            document.getElementById('countdownPause').style.display = 'none';
+        }
+        
+        function resetCountdown() {
+            countdownRunning = false;
+            clearInterval(countdownInterval);
+            countdownTime = 0;
+            updateCountdownDisplay();
+            document.getElementById('countdownStart').style.display = 'inline-block';
+            document.getElementById('countdownPause').style.display = 'none';
+        }
+        
+        function updateCountdownDisplay() {
+            const hours = Math.floor(countdownTime / 3600);
+            const minutes = Math.floor((countdownTime % 3600) / 60);
+            const seconds = countdownTime % 60;
+            
+            document.getElementById('countdownDisplay').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // 番茄钟功能
+        document.getElementById('pomodoroStart').addEventListener('click', startPomodoro);
+        document.getElementById('pomodoroPause').addEventListener('click', pausePomodoro);
+        document.getElementById('pomodoroReset').addEventListener('click', resetPomodoro);
+        
+        function startPomodoro() {
+            if (!pomodoroRunning) {
+                pomodoroRunning = true;
+                document.getElementById('pomodoroStart').style.display = 'none';
+                document.getElementById('pomodoroPause').style.display = 'inline-block';
+                
+                if (pomodoroPhase === 'work') {
+                    pomodoroTime = parseInt(document.getElementById('workTime').value) * 60;
+                    document.getElementById('pomodoroStatus').textContent = '专注工作时间';
+                } else if (pomodoroPhase === 'shortBreak') {
+                    pomodoroTime = parseInt(document.getElementById('shortBreakTime').value) * 60;
+                    document.getElementById('pomodoroStatus').textContent = '短休息时间';
+                } else {
+                    pomodoroTime = parseInt(document.getElementById('longBreakTime').value) * 60;
+                    document.getElementById('pomodoroStatus').textContent = '长休息时间';
+                }
+                
+                pomodoroInterval = setInterval(() => {
+                    pomodoroTime--;
+                    updatePomodoroDisplay();
+                    
+                    if (pomodoroTime <= 0) {
+                        clearInterval(pomodoroInterval);
+                        pomodoroRunning = false;
+                        document.getElementById('pomodoroStart').style.display = 'inline-block';
+                        document.getElementById('pomodoroPause').style.display = 'none';
+                        
+                        if (pomodoroPhase === 'work') {
+                            pomodoroCount++;
+                            if (pomodoroCount % parseInt(document.getElementById('longBreakInterval').value) === 0) {
+                                pomodoroPhase = 'longBreak';
+                                alert('专注时间结束！开始长休息。');
+                            } else {
+                                pomodoroPhase = 'shortBreak';
+                                alert('专注时间结束！开始短休息。');
+                            }
+                        } else {
+                            pomodoroPhase = 'work';
+                            alert('休息时间结束！开始专注工作。');
+                        }
+                        
+                        startPomodoro();
+                    }
+                }, 1000);
+            }
+        }
+        
+        function pausePomodoro() {
+            pomodoroRunning = false;
+            clearInterval(pomodoroInterval);
+            document.getElementById('pomodoroStart').style.display = 'inline-block';
+            document.getElementById('pomodoroPause').style.display = 'none';
+        }
+        
+        function resetPomodoro() {
+            pomodoroRunning = false;
+            clearInterval(pomodoroInterval);
+            pomodoroTime = parseInt(document.getElementById('workTime').value) * 60;
+            pomodoroPhase = 'work';
+            pomodoroCount = 0;
+            updatePomodoroDisplay();
+            document.getElementById('pomodoroStatus').textContent = '专注工作时间';
+            document.getElementById('pomodoroStart').style.display = 'inline-block';
+            document.getElementById('pomodoroPause').style.display = 'none';
+        }
+        
+        function updatePomodoroDisplay() {
+            const minutes = Math.floor(pomodoroTime / 60);
+            const seconds = pomodoroTime % 60;
+            
+            document.getElementById('pomodoroDisplay').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // 更新历史记录显示
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+            
+            timerHistory.forEach((record, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <div>
+                        <div class="history-time">${record.type}</div>
+                        <div class="history-duration">${record.display}</div>
+                    </div>
+                    <div>
+                        <span>${record.time}</span>
+                        <button class="history-delete" onclick="deleteHistory(${index})">删除</button>
+                    </div>
+                `;
+                historyList.appendChild(historyItem);
+            });
+        }
+        
+        // 删除历史记录
+        function deleteHistory(index) {
+            timerHistory.splice(index, 1);
+            localStorage.setItem('timerHistory', JSON.stringify(timerHistory));
+            updateHistoryDisplay();
+        }
+        
+        // 页面加载完成后初始化
+        window.addEventListener('load', () => {
+            updateHistoryDisplay();
+            resetPomodoro();
+        });
+    </script>
+    
+    <!-- 页面内容概要 -->
+    <div class="page-summary" style="background: #f8f9fa; padding: 2rem 0; margin-top: 2rem;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <h4>页面内容概要</h4>
+            <p>专业计时器是一个功能强大的时间管理工具，包含三个主要功能模块：正计时器用于记录任务耗时，倒计时器用于设置时间限制，番茄钟用于提高工作效率。页面支持自定义时间设置，提供时间记录历史功能，帮助用户追踪时间使用情况。界面设计简洁美观，操作简单直观，适合各种工作场景使用，是提升时间管理效率的理想工具。</p>
+        </div>
+    </div>
+</body>
+</html>

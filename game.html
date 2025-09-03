@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板拼图游戏 - 趣味网站模板游戏 | TemplateHub</title>
+    <meta name="description" content="有趣的模板拼图游戏，测试您的观察力和记忆力，在游戏中了解网站模板知识。">
+    <meta name="keywords" content="拼图游戏,模板游戏,网站游戏,趣味游戏,记忆力游戏">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXH17REJKN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CXH17REJKN');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8794607118520437" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .game-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .game-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .game-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 2rem auto;
+            max-width: 400px;
+        }
+        
+        .game-card {
+            aspect-ratio: 1;
+            background: #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+            transform: rotateY(180deg);
+            transform-style: preserve-3d;
+        }
+        
+        .game-card.flipped {
+            transform: rotateY(0deg);
+            background: #4CAF50;
+        }
+        
+        .game-card.matched {
+            background: #4CAF50;
+            transform: rotateY(0deg);
+        }
+        
+        .game-controls {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .game-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+        }
+        
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+        
+        .game-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .game-info h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .template-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .template-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .template-name {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .template-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .back-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-home:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .game-grid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 300px;
+            }
+            
+            .game-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-section">
+            <div class="game-header">
+                <h1><i class="fas fa-puzzle-piece"></i> 模板拼图游戏</h1>
+                <p>测试您的观察力和记忆力，在游戏中了解网站模板知识</p>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="moves">0</div>
+                    <div class="stat-label">步数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="time">0</div>
+                    <div class="stat-label">时间(秒)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="score">0</div>
+                    <div class="stat-label">得分</div>
+                </div>
+            </div>
+            
+            <div class="game-grid" id="gameGrid">
+                <!-- 游戏卡片将通过JavaScript动态生成 -->
+            </div>
+            
+            <div class="game-controls">
+                <button class="game-btn" id="newGameBtn">新游戏</button>
+                <button class="game-btn" id="hintBtn">提示</button>
+                <button class="game-btn" id="pauseBtn">暂停</button>
+            </div>
+            
+            <div class="game-info">
+                <h3><i class="fas fa-info-circle"></i> 游戏说明</h3>
+                <p>这是一个记忆翻牌游戏，您需要找到相同的模板图标来获得分数。游戏包含8种不同的网站模板类型，每种类型有2张卡片。点击卡片将其翻转，找到匹配的对子来消除它们。</p>
+                
+                <div class="template-info">
+                    <div class="template-item">
+                        <div class="template-name">企业网站模板</div>
+                        <div class="template-desc">适合公司官网、企业展示等</div>
+                    </div>
+                    <div class="template-item">
+                        <div class="template-name">个人博客模板</div>
+                        <div class="template-desc">适合个人写作、分享经验</div>
+                    </div>
+                    <div class="template-item">
+                        <div class="template-name">电子商务模板</div>
+                        <div class="template-desc">适合在线商店、产品销售</div>
+                    </div>
+                    <div class="template-item">
+                        <div class="template-name">作品集模板</div>
+                        <div class="template-desc">适合设计师、艺术家展示作品</div>
+                    </div>
+                    <div class="template-item">
+                        <div class="template-name">教育培训模板</div>
+                        <div class="template-desc">适合学校、培训机构使用</div>
+                    </div>
+                    <div class="template-item">
+                        <div class="template-name">健身中心模板</div>
+                        <div class="template-desc">适合健身房、运动中心</div>
+                    </div>
+                    <div class="template-item">
+                        <div class="template-name">餐厅美食模板</div>
+                        <div class="template-desc">适合餐厅、美食网站</div>
+                    </div>
+                    <div class="template-item">
+                        <div class="template-name">科技公司模板</div>
+                        <div class="template-desc">适合科技公司、IT企业</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-home">
+            <i class="fas fa-home"></i> 返回首页
+        </a>
+    </div>
+
+    <script>
+        // 游戏配置
+        const gameConfig = {
+            gridSize: 4,
+            cardCount: 16,
+            pairCount: 8,
+            icons: [
+                '🏢', '📝', '🛒', '🎨', '🎓', '💪', '🍽️', '💻'
+            ]
+        };
+        
+        // 游戏状态
+        let gameState = {
+            cards: [],
+            flippedCards: [],
+            matchedPairs: 0,
+            moves: 0,
+            time: 0,
+            score: 0,
+            gameRunning: false,
+            gameTimer: null
+        };
+        
+        // 初始化游戏
+        function initGame() {
+            createCards();
+            shuffleCards();
+            renderGame();
+            startGame();
+        }
+        
+        // 创建卡片
+        function createCards() {
+            gameState.cards = [];
+            const icons = [...gameConfig.icons, ...gameConfig.icons]; // 每种图标2张
+            
+            for (let i = 0; i < gameConfig.cardCount; i++) {
+                gameState.cards.push({
+                    id: i,
+                    icon: icons[i],
+                    isFlipped: false,
+                    isMatched: false
+                });
+            }
+        }
+        
+        // 洗牌
+        function shuffleCards() {
+            for (let i = gameState.cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [gameState.cards[i], gameState.cards[j]] = [gameState.cards[j], gameState.cards[i]];
+            }
+        }
+        
+        // 渲染游戏
+        function renderGame() {
+            const gameGrid = document.getElementById('gameGrid');
+            gameGrid.innerHTML = '';
+            
+            gameState.cards.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'game-card';
+                cardElement.dataset.id = card.id;
+                
+                if (card.isFlipped || card.isMatched) {
+                    cardElement.classList.add('flipped');
+                    if (card.isMatched) {
+                        cardElement.classList.add('matched');
+                    }
+                }
+                
+                cardElement.innerHTML = card.icon;
+                cardElement.addEventListener('click', () => flipCard(card.id));
+                
+                gameGrid.appendChild(cardElement);
+            });
+        }
+        
+        // 翻转卡片
+        function flipCard(cardId) {
+            if (!gameState.gameRunning) return;
+            
+            const card = gameState.cards.find(c => c.id === cardId);
+            if (!card || card.isFlipped || card.isMatched) return;
+            
+            card.isFlipped = true;
+            gameState.flippedCards.push(card);
+            
+            renderGame();
+            
+            if (gameState.flippedCards.length === 2) {
+                gameState.moves++;
+                updateStats();
+                
+                setTimeout(() => {
+                    checkMatch();
+                }, 500);
+            }
+        }
+        
+        // 检查匹配
+        function checkMatch() {
+            const [card1, card2] = gameState.flippedCards;
+            
+            if (card1.icon === card2.icon) {
+                // 匹配成功
+                card1.isMatched = true;
+                card2.isMatched = true;
+                gameState.matchedPairs++;
+                gameState.score += 10;
+                
+                if (gameState.matchedPairs === gameConfig.pairCount) {
+                    endGame(true);
+                }
+            } else {
+                // 匹配失败
+                card1.isFlipped = false;
+                card2.isFlipped = false;
+            }
+            
+            gameState.flippedCards = [];
+            renderGame();
+            updateStats();
+        }
+        
+        // 开始游戏
+        function startGame() {
+            gameState.gameRunning = true;
+            gameState.gameTimer = setInterval(() => {
+                gameState.time++;
+                updateStats();
+            }, 1000);
+        }
+        
+        // 结束游戏
+        function endGame(won) {
+            gameState.gameRunning = false;
+            clearInterval(gameState.gameTimer);
+            
+            if (won) {
+                const bonus = Math.max(0, 100 - gameState.time - gameState.moves * 2);
+                gameState.score += bonus;
+                updateStats();
+                
+                setTimeout(() => {
+                    alert(`恭喜！您完成了游戏！\n步数: ${gameState.moves}\n时间: ${gameState.time}秒\n得分: ${gameState.score}`);
+                }, 500);
+            }
+        }
+        
+        // 更新统计信息
+        function updateStats() {
+            document.getElementById('moves').textContent = gameState.moves;
+            document.getElementById('time').textContent = gameState.time;
+            document.getElementById('score').textContent = gameState.score;
+        }
+        
+        // 新游戏
+        document.getElementById('newGameBtn').addEventListener('click', () => {
+            if (confirm('确定要开始新游戏吗？当前进度将丢失。')) {
+                resetGame();
+                initGame();
+            }
+        });
+        
+        // 提示功能
+        document.getElementById('hintBtn').addEventListener('click', () => {
+            if (gameState.gameRunning && gameState.flippedCards.length === 0) {
+                // 找到未匹配的卡片
+                const unmatchedCards = gameState.cards.filter(card => !card.isMatched);
+                if (unmatchedCards.length > 0) {
+                    const randomCard = unmatchedCards[Math.floor(Math.random() * unmatchedCards.length)];
+                    const cardElement = document.querySelector(`[data-id="${randomCard.id}"]`);
+                    
+                    // 高亮提示
+                    cardElement.style.boxShadow = '0 0 20px #ff6b6b';
+                    setTimeout(() => {
+                        cardElement.style.boxShadow = '';
+                    }, 1000);
+                }
+            }
+        });
+        
+        // 暂停功能
+        document.getElementById('pauseBtn').addEventListener('click', () => {
+            if (gameState.gameRunning) {
+                gameState.gameRunning = false;
+                clearInterval(gameState.gameTimer);
+                document.getElementById('pauseBtn').textContent = '继续';
+            } else {
+                gameState.gameRunning = true;
+                gameState.gameTimer = setInterval(() => {
+                    gameState.time++;
+                    updateStats();
+                }, 1000);
+                document.getElementById('pauseBtn').textContent = '暂停';
+            }
+        });
+        
+        // 重置游戏
+        function resetGame() {
+            gameState = {
+                cards: [],
+                flippedCards: [],
+                matchedPairs: 0,
+                moves: 0,
+                time: 0,
+                score: 0,
+                gameRunning: false,
+                gameTimer: null
+            };
+            
+            if (gameState.gameTimer) {
+                clearInterval(gameState.gameTimer);
+            }
+        }
+        
+        // 页面加载完成后初始化游戏
+        window.addEventListener('load', initGame);
+    </script>
+    
+    <!-- 页面内容概要 -->
+    <div class="page-summary" style="background: #f8f9fa; padding: 2rem 0; margin-top: 2rem;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <h4>页面内容概要</h4>
+            <p>模板拼图游戏是一个有趣的记忆翻牌游戏，与网站模板主题紧密结合。游戏包含8种不同的网站模板类型，每种类型有2张卡片，玩家需要通过记忆找到匹配的对子来获得分数。游戏具有完整的统计功能，包括步数、时间和得分记录，还提供提示和暂停功能。通过游戏化的方式，用户可以了解不同类型的网站模板及其适用场景，既增加了网站的趣味性，又能帮助用户学习网站模板知识，延长用户在网站的停留时间。</p>
+        </div>
+    </div>
+</body>
+</html>

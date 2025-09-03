@@ -7,6 +7,30 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>https://htmltemplate.online/sitemap-page.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://htmltemplate.online/game.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://htmltemplate.online/timer.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://htmltemplate.online/food-wheel.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://htmltemplate.online/个人博客模板/index.html</loc>
         <lastmod>2024-12-19</lastmod>
         <changefreq>monthly</changefreq>

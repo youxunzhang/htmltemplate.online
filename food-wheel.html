@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食物大转盘 - 美食推荐与营养分析 | TemplateHub</title>
+    <meta name="description" content="转动转盘，随机获得美食推荐，了解营养成分，发现新的美食选择。">
+    <meta name="keywords" content="食物转盘,美食推荐,营养分析,随机美食,健康饮食">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXH17REJKN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CXH17REJKN');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8794607118520437" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .food-wheel-container {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .wheel-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .wheel-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto 2rem;
+        }
+        
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .wheel-segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .wheel-pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #ff6b6b;
+            z-index: 10;
+        }
+        
+        .spin-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+        
+        .spin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,107,107,0.6);
+        }
+        
+        .spin-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .result-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .food-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            display: block;
+            border: 4px solid #ff6b6b;
+        }
+        
+        .nutrition-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .nutrition-item {
+            background: #e9ecef;
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .nutrition-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+        
+        .back-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-home:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .wheel-container {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .wheel-segment {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="food-wheel-container">
+        <div class="wheel-section">
+            <h1><i class="fas fa-utensils"></i> 食物大转盘</h1>
+            <p>转动转盘，发现美食新选择！</p>
+            
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <div class="wheel" id="wheel">
+                    <!-- 转盘段将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <button class="spin-button" id="spinBtn">
+                <i class="fas fa-play"></i> 开始转动
+            </button>
+            
+            <div class="result-section" id="resultSection">
+                <h3>🎉 恭喜！您获得了：</h3>
+                <div class="food-card" id="foodCard">
+                    <!-- 食物信息将在这里显示 -->
+                </div>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-home">
+            <i class="fas fa-home"></i> 返回首页
+        </a>
+    </div>
+
+    <script>
+        // 食物数据
+        const foods = [
+            {
+                name: "宫保鸡丁",
+                image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=300&fit=crop",
+                calories: 320,
+                protein: "25g",
+                carbs: "15g",
+                fat: "18g",
+                fiber: "3g",
+                description: "经典川菜，鸡肉嫩滑，花生香脆，口感丰富"
+            },
+            {
+                name: "麻婆豆腐",
+                image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=300&fit=crop",
+                calories: 180,
+                protein: "12g",
+                carbs: "8g",
+                fat: "12g",
+                fiber: "4g",
+                description: "麻辣鲜香，豆腐嫩滑，下饭神器"
+            },
+            {
+                name: "红烧肉",
+                image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=300&fit=crop",
+                calories: 450,
+                protein: "28g",
+                carbs: "5g",
+                fat: "35g",
+                fiber: "1g",
+                description: "肥而不腻，入口即化，经典家常菜"
+            },
+            {
+                name: "清蒸鲈鱼",
+                image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=300&fit=crop",
+                calories: 220,
+                protein: "35g",
+                carbs: "2g",
+                fat: "8g",
+                fiber: "0g",
+                description: "鲜嫩多汁，营养丰富，健康选择"
+            },
+            {
+                name: "蒜蓉西兰花",
+                image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=300&fit=crop",
+                calories: 80,
+                protein: "6g",
+                carbs: "12g",
+                fat: "3g",
+                fiber: "6g",
+                description: "绿色健康，富含维生素，低卡路里"
+            },
+            {
+                name: "番茄炒蛋",
+                image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=300&fit=crop",
+                calories: 200,
+                protein: "15g",
+                carbs: "8g",
+                fat: "12g",
+                fiber: "2g",
+                description: "简单美味，营养均衡，家常必备"
+            },
+            {
+                name: "水煮鱼",
+                image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=300&fit=crop",
+                calories: 280,
+                protein: "32g",
+                carbs: "6g",
+                fat: "15g",
+                fiber: "2g",
+                description: "麻辣鲜香，鱼肉嫩滑，开胃下饭"
+            },
+            {
+                name: "糖醋里脊",
+                image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=300&fit=crop",
+                calories: 350,
+                protein: "22g",
+                carbs: "25g",
+                fat: "18g",
+                fiber: "1g",
+                description: "酸甜可口，外酥里嫩，老少皆宜"
+            }
+        ];
+
+        // 转盘颜色
+        const colors = [
+            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4',
+            '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F'
+        ];
+
+        let isSpinning = false;
+        let currentRotation = 0;
+
+        // 初始化转盘
+        function initWheel() {
+            const wheel = document.getElementById('wheel');
+            const segmentAngle = 360 / foods.length;
+            
+            foods.forEach((food, index) => {
+                const segment = document.createElement('div');
+                segment.className = 'wheel-segment';
+                segment.style.backgroundColor = colors[index % colors.length];
+                segment.style.transform = `rotate(${index * segmentAngle}deg)`;
+                segment.innerHTML = `
+                    <div style="transform: rotate(${segmentAngle / 2}deg)">
+                        ${food.name}
+                    </div>
+                `;
+                wheel.appendChild(segment);
+            });
+        }
+
+        // 转动转盘
+        function spinWheel() {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            const spinBtn = document.getElementById('spinBtn');
+            const resultSection = document.getElementById('resultSection');
+            
+            spinBtn.disabled = true;
+            spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 转动中...';
+            resultSection.style.display = 'none';
+            
+            // 随机选择食物
+            const randomIndex = Math.floor(Math.random() * foods.length);
+            const selectedFood = foods[randomIndex];
+            
+            // 计算转动角度
+            const segmentAngle = 360 / foods.length;
+            const targetAngle = 360 - (randomIndex * segmentAngle + segmentAngle / 2);
+            const spins = 5; // 转动圈数
+            const finalRotation = currentRotation + (spins * 360) + targetAngle;
+            
+            // 动画转动
+            const wheel = document.getElementById('wheel');
+            wheel.style.transform = `rotate(${finalRotation}deg)`;
+            currentRotation = finalRotation;
+            
+            // 3秒后显示结果
+            setTimeout(() => {
+                showResult(selectedFood);
+                spinBtn.disabled = false;
+                spinBtn.innerHTML = '<i class="fas fa-play"></i> 再次转动';
+                isSpinning = false;
+            }, 3000);
+        }
+
+        // 显示结果
+        function showResult(food) {
+            const resultSection = document.getElementById('resultSection');
+            const foodCard = document.getElementById('foodCard');
+            
+            foodCard.innerHTML = `
+                <img src="${food.image}" alt="${food.name}" class="food-image">
+                <h4>${food.name}</h4>
+                <p>${food.description}</p>
+                
+                <div class="nutrition-info">
+                    <div class="nutrition-item">
+                        <div class="nutrition-value">${food.calories}</div>
+                        <div>卡路里</div>
+                    </div>
+                    <div class="nutrition-item">
+                        <div class="nutrition-value">${food.protein}</div>
+                        <div>蛋白质</div>
+                    </div>
+                    <div class="nutrition-item">
+                        <div class="nutrition-value">${food.carbs}</div>
+                        <div>碳水化合物</div>
+                    </div>
+                    <div class="nutrition-item">
+                        <div class="nutrition-value">${food.fat}</div>
+                        <div>脂肪</div>
+                    </div>
+                    <div class="nutrition-item">
+                        <div class="nutrition-value">${food.fiber}</div>
+                        <div>膳食纤维</div>
+                    </div>
+                </div>
+            `;
+            
+            resultSection.style.display = 'block';
+        }
+
+        // 事件监听
+        document.getElementById('spinBtn').addEventListener('click', spinWheel);
+
+        // 页面加载完成后初始化转盘
+        window.addEventListener('load', initWheel);
+    </script>
+    
+    <!-- 页面内容概要 -->
+    <div class="page-summary" style="background: #f8f9fa; padding: 2rem 0; margin-top: 2rem;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <h4>页面内容概要</h4>
+            <p>食物大转盘是一个有趣的互动页面，用户可以通过转动转盘随机获得美食推荐。转盘包含8种不同的美食选择，每种美食都提供详细的营养成分信息，包括卡路里、蛋白质、碳水化合物、脂肪和膳食纤维含量。这个功能不仅增加了网站的趣味性，还能帮助用户了解不同食物的营养价值，为健康饮食提供参考。页面采用现代化的设计风格，包含流畅的动画效果和响应式布局。</p>
+        </div>
+    </div>
+</body>
+</html>
